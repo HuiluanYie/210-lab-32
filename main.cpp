@@ -1,4 +1,4 @@
-// COMSC-210 | Lab 28 | Huiluan Yie
+// COMSC-210 | Lab 32 | Huiluan Yie
 
 #include <iostream>
 #include <deque>
@@ -11,20 +11,18 @@ const int INITIAL_SIZE = 2;
 const int P = 55;
 
 // Function prototype
-void display_cars(const deque<Car>&);
-void simu(deque<Car>&);
+void display_cars(const deque < Car > & );
+void simu(deque < Car > & );
 
-int main() 
-{
+int main() {
     srand(time(0));
 
-    deque<Car> cars;
+    deque < Car > cars;
     Car c;
     int time = 0;
 
     // initialize cars
-    for (int i = 0; i < INITIAL_SIZE; i++)
-    {
+    for (int i = 0; i < INITIAL_SIZE; i++) {
         c = Car();
         cars.push_back(c);
     }
@@ -32,46 +30,45 @@ int main()
     display_cars(cars);
 
     // Run the simulation
-    while (!cars.empty())
-    {
+    while (!cars.empty()) {
         time++;
         cout << "\nTime: " << time;
         simu(cars);
-        
+
         cout << "Queue:\n";
         display_cars(cars);
     }
-    
 
     return 0;
 }
 
 // Function definition
-void display_cars(const deque<Car>& cars)
-{
+void display_cars(const deque < Car > & cars) {
     // display_cars() displays every car in the deque.
     // arguments: a deque of Cars object
     // returns: none
-    for (Car c : cars)
-    {
+    if (cars.empty()) {
+        cout << "\tEmpty\n";
+    }
+
+    for (Car c: cars) {
         cout << '\t';
         c.print();
     }
 }
 
-void simu(deque<Car>& cars)
-{
+void simu(deque < Car > & cars) {
+    // simu() runs a simulation of 1 operation occuring
+    // arguments: a deque of Cars object
+    // returns: none
     int p = rand() % 100;
 
     cout << " Operation: ";
-    if (p < P)
-    {
+    if (p < P) {
         cout << "Car paid: ";
         cars.front().print();
         cars.pop_front();
-    }
-    else
-    {
+    } else {
         cout << "Joined lane: ";
         cars.push_back(Car());
         cars.back().print();
