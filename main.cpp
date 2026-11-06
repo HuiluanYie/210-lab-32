@@ -6,14 +6,19 @@
 using namespace std;
 
 const int INITIAL_SIZE = 2;
+const int P;
 
 // Function prototype
 void display_cars(const deque<Car>&);
+void simu(deque<Car>&);
 
 int main() 
 {
     deque<Car> cars;
     Car c;
+    int time = 0;
+
+    // initialize cars
     for (int i = 0; i < INITIAL_SIZE; i++)
     {
         c = Car();
@@ -22,15 +27,14 @@ int main()
     cout << "Initial queue:\n";
     display_cars(cars);
 
-    //exercise deque methods
-    cars.front().print();
-    cars.back().print();
-    cars[0].print();
-    cars.pop_front();
-    display_cars(cars);
-    cars.pop_back();
-    display_cars(cars);
-    cout << cars.size();
+    // Run the simulation
+    while (!cars.empty())
+    {
+        time++;
+        int p = rand() % 100 + 1;
+        
+    }
+    
 
     return 0;
 }
@@ -38,10 +42,17 @@ int main()
 // Function definition
 void display_cars(const deque<Car>& cars)
 {
-
+    // display_cars() displays every car in the deque.
+    // arguments: a deque of Cars object
+    // returns: none
     for (Car c : cars)
     {
         cout << '\t';
         c.print();
     }
+}
+
+void simu(deque<Car>&)
+{
+    
 }
