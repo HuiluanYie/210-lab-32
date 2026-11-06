@@ -23,12 +23,14 @@ int main()
     display_cars(cars);
 
     //exercise deque methods
-    cars.front();
-    cars.back();
+    cars.front().print();
+    cars.back().print();
     cars[0].print();
     cars.pop_front();
+    display_cars(cars);
     cars.pop_back();
-    cars.empty();
+    display_cars(cars);
+    cout << cars.size();
 
     return 0;
 }
