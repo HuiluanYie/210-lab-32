@@ -2,11 +2,13 @@
 
 #include <iostream>
 #include <deque>
+#include <cstdlib>
+#include <ctime>
 #include "Car.h"
 using namespace std;
 
 const int INITIAL_SIZE = 2;
-const int P;
+const int P = 55;
 
 // Function prototype
 void display_cars(const deque<Car>&);
@@ -14,6 +16,8 @@ void simu(deque<Car>&);
 
 int main() 
 {
+    srand(time(0));
+
     deque<Car> cars;
     Car c;
     int time = 0;
@@ -31,8 +35,11 @@ int main()
     while (!cars.empty())
     {
         time++;
-        int p = rand() % 100 + 1;
+        cout << "\nTime: " << time;
+        simu(cars);
         
+        cout << "Queue:\n";
+        display_cars(cars);
     }
     
 
@@ -52,7 +59,21 @@ void display_cars(const deque<Car>& cars)
     }
 }
 
-void simu(deque<Car>&)
+void simu(deque<Car>& cars)
 {
-    
+    int p = rand() % 100;
+
+    cout << " Operation: ";
+    if (p < P)
+    {
+        cout << "Car paid: ";
+        cars.front().print();
+        cars.pop_front();
+    }
+    else
+    {
+        cout << "Joined lane: ";
+        cars.push_back(Car());
+        cars.back().print();
+    }
 }
