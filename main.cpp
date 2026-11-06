@@ -7,6 +7,9 @@ using namespace std;
 
 const int INITIAL_SIZE = 2;
 
+// Function prototype
+void display_cars(const deque<Car>&);
+
 int main() 
 {
     deque<Car> cars;
@@ -16,6 +19,27 @@ int main()
         c = Car();
         cars.push_back(c);
     }
+    cout << "Initial queue:\n";
+    display_cars(cars);
 
-    return 1;
+    //exercise deque methods
+    cars.front();
+    cars.back();
+    cars[0].print();
+    cars.pop_front();
+    cars.pop_back();
+    cars.empty();
+
+    return 0;
+}
+
+// Function definition
+void display_cars(const deque<Car>& cars)
+{
+
+    for (Car c : cars)
+    {
+        cout << '\t';
+        c.print();
+    }
 }
