@@ -13,6 +13,7 @@ const int NUM_LANES = 4;
 
 // Function prototype
 void display_cars(const deque < Car > & );
+void display_lanes(deque < Car > [], int);
 void simu(deque < Car > & );
 
 int main() {
@@ -26,14 +27,15 @@ int main() {
     deque<Car> lanes[NUM_LANES];
 
     // Tests operations
+    // another car joins the queue
     lanes[0].push_back(Car());
-    lanes[1].push_front(Car());
+    display_lanes(lanes, NUM_LANES);
 
-    lanes[0].back().print();
-    lanes[0].front().print();
+    // car pays its toll and leaves
 
-    lanes[0].back().print();
-    lanes[0].front().print();
+    // rear car shift lanes
+
+    
 
 
 
@@ -74,6 +76,24 @@ void display_cars(const deque < Car > & cars) {
         cout << '\t';
         c.print();
     }
+}
+
+void display_lanes(deque < Car > lanes[], int l)
+{
+    // display_lanes() displays all lanes.
+    // arguments: an array of lanes and number of lanes
+    // returns: none
+
+    for (int i = 0; i < l; i++)
+    {
+        cout
+        for (Car& car : lanes[i])
+        {
+            cout << '\t';
+            car.print();
+        }
+    }
+    
 }
 
 void simu(deque < Car > & cars) {
