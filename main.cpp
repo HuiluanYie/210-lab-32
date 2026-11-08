@@ -14,37 +14,15 @@ const int PERIOD = 20;
 // Function prototype
 void display_cars(const deque < Car > & );
 void display_lanes(deque < Car > [], int);
-void simu1(deque < Car > &, deque < Car > []);
+void simu1(deque < Car > &, deque < Car > [], int);
 void simu2(deque < Car > & );
 
 int main() {
     srand(time(0));
-
     Car c;
-    int time = 0;
 
     // Create the array
     deque<Car> lanes[NUM_LANES];
-
-    /*
-    lanes[0].push_back(Car());
-    // Tests operations
-    // another car joins the queue
-    lanes[0].push_back(Car());
-    display_lanes(lanes, NUM_LANES);
-
-    // car pays its toll and leaves
-    cout << "paid: ";
-    lanes[0].front().print();
-    lanes[0].pop_front();
-    display_lanes(lanes, NUM_LANES);
-
-    // rear car shift lanes
-    Car mcar = lanes[0].back();
-    lanes[0].pop_back();
-    lanes[2].push_back(mcar);
-    display_lanes(lanes, NUM_LANES);
-    */
 
     // initialize cars
     for (int j = 0; j < NUM_LANES; j++)
@@ -58,20 +36,6 @@ int main() {
     cout << "Initial queue:\n";
     display_lanes(lanes, NUM_LANES);
 
-    /*
-    // 50/50 loop
-    for (int t = 0; t < PERIOD; t++)
-    {
-        cout << "\nTime: " << t + 1 << endl;
-        for (int l = 0; l < NUM_LANES; l++)
-        {
-            cout << "Lane: " << l + 1;
-            simu2(lanes[l]);
-        }
-        display_lanes(lanes, NUM_LANES);
-    }
-    */
-
     for (int t = 0; t < PERIOD; t++)
     {
         cout << "\nTime: " << t + 1 << endl;
@@ -84,7 +48,7 @@ int main() {
             }
             else
             {
-                simu1(lanes[i], lanes);
+                simu1(lanes[i], lanes, i);
             }
         }
         display_lanes(lanes, NUM_LANES);
@@ -134,7 +98,7 @@ void display_lanes(deque < Car > lanes[], int l)
 }
 
 
-void simu1(deque < Car > & cars, deque < Car > lanes[]) {
+void simu1(deque < Car > & cars, deque < Car > lanes[], int i) {
     // simu1() runs a simulation of three possible operations
     // arguments: a deque of Cars object and the array of car lane
     // returns: none
@@ -152,36 +116,30 @@ void simu1(deque < Car > & cars, deque < Car > lanes[]) {
     }
     else 
     {
+        int l;
         do
         {
-            int l = rand() % NUM_LANES;
-        } while (l != );
+            l = rand() % NUM_LANES;
+        } while (l == i);
         
         cout << " Switched: ";
         Car c = cars.back();
+        c.print();
         cars.pop_back();
         lanes[l].push_back(c);
     }
 }
 
 void simu2(deque < Car > & cars) {
-    // simu2() runs a simulation of 50/50 of the car paying/leaving (when empty, nothing happen)
-    //                               and of the car joining the deque
+    // simu2() runs a simulation of 50/50 of the car joining the deque
     // arguments: a deque of Cars object
     // returns: none
     int p = rand() % M;
 
     if (p < P) {
-        if (!cars.empty())
-        {
-            cout << " Paid: ";
-            cars.front().print();
-            cars.pop_front();
-        }
-        else cout << endl;
-    } else {
         cout << " Joined: ";
         cars.push_back(Car());
         cars.back().print();
     }
+    else cout << endl;
 }
