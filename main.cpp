@@ -19,7 +19,6 @@ void simu(deque < Car > & );
 int main() {
     srand(time(0));
 
-    deque < Car > cars;
     Car c;
     int time = 0;
 
@@ -47,14 +46,15 @@ int main() {
     */
 
     // initialize cars
-    for (int i = 0; i < NUM_LANES; i++)
+    for (int j = 0; j < NUM_LANES; j++)
     {
-        for (int i = 0; i < INITIAL_SIZE; i++) {
-        c = Car();
-        cars.push_back(c);
-    }
-    cout << "Initial queue:\n";
-    display_cars(cars);
+        for (int i = 0; i < INITIAL_SIZE; i++) 
+        {
+            c = Car();
+            lanes[j].push_back(c);
+        }
+        cout << "Initial queue:\n";
+        display_lanes(lanes, NUM_LANES);
     }
     
     
