@@ -25,6 +25,7 @@ int main() {
 
     // Create the array
     deque<Car> lanes[NUM_LANES];
+    lanes[0].push_back(Car());
 
     // Tests operations
     // another car joins the queue
@@ -32,9 +33,16 @@ int main() {
     display_lanes(lanes, NUM_LANES);
 
     // car pays its toll and leaves
+    cout << "paid: ";
+    lanes[0].front().print();
+    lanes[0].pop_front();
+    display_lanes(lanes, NUM_LANES);
 
     // rear car shift lanes
-
+    Car mcar = lanes[0].back();
+    lanes[0].pop_back();
+    lanes[2].push_back(mcar);
+    display_lanes(lanes, NUM_LANES);
     
 
 
@@ -83,16 +91,12 @@ void display_lanes(deque < Car > lanes[], int l)
     // display_lanes() displays all lanes.
     // arguments: an array of lanes and number of lanes
     // returns: none
-
     for (int i = 0; i < l; i++)
     {
-        cout
-        for (Car& car : lanes[i])
-        {
-            cout << '\t';
-            car.print();
-        }
+        cout << "Lane " << i + 1 << ":\n";
+        display_cars(lanes[i]);
     }
+    cout << endl;
     
 }
 
