@@ -7,9 +7,9 @@
 using namespace std;
 
 const int INITIAL_SIZE = 2;
-const int P = 55;
-
+const int P = 50;
 const int NUM_LANES = 4;
+const int PERIOD = ;
 
 // Function prototype
 void display_cars(const deque < Car > & );
@@ -57,6 +57,11 @@ int main() {
         display_lanes(lanes, NUM_LANES);
     }
     
+    // 50/50 loop
+    for (int t = 0; t < count; t++)
+    {
+        /* code */
+    }
     
 
 
