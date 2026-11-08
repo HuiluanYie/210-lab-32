@@ -9,7 +9,7 @@ using namespace std;
 const int INITIAL_SIZE = 2;
 const int P = 50;
 const int NUM_LANES = 4;
-const int PERIOD = ;
+const int PERIOD = 20;
 
 // Function prototype
 void display_cars(const deque < Car > & );
@@ -58,9 +58,14 @@ int main() {
     }
     
     // 50/50 loop
-    for (int t = 0; t < count; t++)
+    for (int t = 0; t < PERIOD; t++)
     {
-        /* code */
+        cout << "\nTime: " << t + 1 << endl;
+        for (int l = 0; l < NUM_LANES; l++)
+        {
+            cout << "Lane: " << l + 1;
+            simu(lanes[l]);
+        }
     }
     
 
@@ -118,13 +123,16 @@ void simu(deque < Car > & cars) {
     // returns: none
     int p = rand() % 100;
 
-    cout << " Operation: ";
     if (p < P) {
-        cout << "Car paid: ";
-        cars.front().print();
-        cars.pop_front();
+        cout << " Paid: ";
+        if (!cars.empty())
+        {
+            cars.front().print();
+            cars.pop_front();
+        }
+        else cout << endl;
     } else {
-        cout << "Joined lane: ";
+        cout << " Joined: ";
         cars.push_back(Car());
         cars.back().print();
     }
