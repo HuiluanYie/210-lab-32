@@ -58,6 +58,7 @@ int main() {
     cout << "Initial queue:\n";
     display_lanes(lanes, NUM_LANES);
 
+    /*
     // 50/50 loop
     for (int t = 0; t < PERIOD; t++)
     {
@@ -69,11 +70,29 @@ int main() {
         }
         display_lanes(lanes, NUM_LANES);
     }
-    
+    */
 
+    for (int t = 0; t < PERIOD; t++)
+    {
+        cout << "\nTime: " << t + 1 << endl;
+        for (int i = 0; i < NUM_LANES; i++)
+        {
+            cout << "Lane: " << i + 1;
+            deque < Car > l = lanes[i];
+            if (l.empty())
+            {
+                simu2(l);
+            }
+            else
+            {
+                simu1(l, lanes);
+            }
+            
+        }
+        display_lanes(lanes, NUM_LANES);
+    }
 
-
-/*
+    /*
     // Run the simulation
     while (!cars.empty()) {
         time++;
@@ -114,12 +133,12 @@ void display_lanes(deque < Car > lanes[], int l)
         display_cars(lanes[i]);
     }
     cout << endl;
-    
 }
+
 
 void simu1(deque < Car > & cars, deque < Car > lanes[]) {
     // simu1() runs a simulation of three possible operations
-    // arguments: a deque of Cars object
+    // arguments: a deque of Cars object and the array of car lane
     // returns: none
     int p = rand() % M;
     int l = rand() % NUM_LANES;
