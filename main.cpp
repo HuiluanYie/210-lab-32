@@ -25,8 +25,9 @@ int main() {
 
     // Create the array
     deque<Car> lanes[NUM_LANES];
-    lanes[0].push_back(Car());
 
+    /*
+    lanes[0].push_back(Car());
     // Tests operations
     // another car joins the queue
     lanes[0].push_back(Car());
@@ -43,19 +44,25 @@ int main() {
     lanes[0].pop_back();
     lanes[2].push_back(mcar);
     display_lanes(lanes, NUM_LANES);
-    
+    */
 
-
-
-
-/*
     // initialize cars
-    for (int i = 0; i < INITIAL_SIZE; i++) {
+    for (int i = 0; i < NUM_LANES; i++)
+    {
+        for (int i = 0; i < INITIAL_SIZE; i++) {
         c = Car();
         cars.push_back(c);
     }
     cout << "Initial queue:\n";
     display_cars(cars);
+    }
+    
+    
+
+
+
+/*
+
 
     // Run the simulation
     while (!cars.empty()) {
