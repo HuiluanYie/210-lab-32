@@ -9,6 +9,8 @@ using namespace std;
 const int INITIAL_SIZE = 2;
 const int P = 55;
 
+const int NUM_LANES = 4;
+
 // Function prototype
 void display_cars(const deque < Car > & );
 void simu(deque < Car > & );
@@ -20,6 +22,23 @@ int main() {
     Car c;
     int time = 0;
 
+    // Create the array
+    deque<Car> lanes[NUM_LANES];
+
+    // Tests operations
+    lanes[0].push_back(Car());
+    lanes[1].push_front(Car());
+
+    lanes[0].back().print();
+    lanes[0].front().print();
+
+    lanes[0].back().print();
+    lanes[0].front().print();
+
+
+
+
+/*
     // initialize cars
     for (int i = 0; i < INITIAL_SIZE; i++) {
         c = Car();
@@ -37,6 +56,7 @@ int main() {
         cout << "Queue:\n";
         display_cars(cars);
     }
+*/
 
     return 0;
 }
