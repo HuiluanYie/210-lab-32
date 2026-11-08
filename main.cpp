@@ -7,13 +7,14 @@
 using namespace std;
 
 const int INITIAL_SIZE = 2;
-const int P = 50;
+const int P = 50, P1 = 46, P2 = 39, M = 100;
 const int NUM_LANES = 4;
 const int PERIOD = 20;
 
 // Function prototype
 void display_cars(const deque < Car > & );
 void display_lanes(deque < Car > [], int);
+void simu1(deque < Car > &, deque < Car > []);
 void simu2(deque < Car > & );
 
 int main() {
@@ -73,8 +74,6 @@ int main() {
 
 
 /*
-
-
     // Run the simulation
     while (!cars.empty()) {
         time++;
@@ -118,12 +117,38 @@ void display_lanes(deque < Car > lanes[], int l)
     
 }
 
+void simu1(deque < Car > & cars, deque < Car > lanes[]) {
+    // simu1() runs a simulation of three possible operations
+    // arguments: a deque of Cars object
+    // returns: none
+    int p = rand() % M;
+    int l = rand() % NUM_LANES;
+
+    if (p < P1) {
+        cout << " Paid: ";
+        cars.front().print();
+        cars.pop_front();
+    } 
+    else if (p < P2) {
+        cout << " Joined: ";
+        cars.push_back(Car());
+        cars.back().print();
+    }
+    else 
+    {
+        Car c = cars.back();
+        cars.pop_back();
+        lanes[l].push_back(c);
+        display_lanes(lanes, NUM_LANES);
+    }
+}
+
 void simu2(deque < Car > & cars) {
-    // simu() runs a simulation of 50/50 of the car paying/leaving (when empty, nothing happen)
+    // simu2() runs a simulation of 50/50 of the car paying/leaving (when empty, nothing happen)
     //                               and of the car joining the deque
     // arguments: a deque of Cars object
     // returns: none
-    int p = rand() % 100;
+    int p = rand() % M;
 
     if (p < P) {
         if (!cars.empty())
