@@ -78,16 +78,14 @@ int main() {
         for (int i = 0; i < NUM_LANES; i++)
         {
             cout << "Lane: " << i + 1;
-            deque < Car > l = lanes[i];
-            if (l.empty())
+            if (lanes[i].empty())
             {
-                simu2(l);
+                simu2(lanes[i]);
             }
             else
             {
-                simu1(l, lanes);
+                simu1(lanes[i], lanes);
             }
-            
         }
         display_lanes(lanes, NUM_LANES);
     }
@@ -141,24 +139,28 @@ void simu1(deque < Car > & cars, deque < Car > lanes[]) {
     // arguments: a deque of Cars object and the array of car lane
     // returns: none
     int p = rand() % M;
-    int l = rand() % NUM_LANES;
-
+    
     if (p < P1) {
         cout << " Paid: ";
         cars.front().print();
         cars.pop_front();
     } 
-    else if (p < P2) {
+    else if (p < P2 + P1) {
         cout << " Joined: ";
         cars.push_back(Car());
         cars.back().print();
     }
     else 
     {
+        do
+        {
+            int l = rand() % NUM_LANES;
+        } while (l != );
+        
+        cout << " Switched: ";
         Car c = cars.back();
         cars.pop_back();
         lanes[l].push_back(c);
-        display_lanes(lanes, NUM_LANES);
     }
 }
 
