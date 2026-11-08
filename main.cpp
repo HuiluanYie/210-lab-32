@@ -27,20 +27,15 @@ int main() {
 
     // Tests operations
     lanes[0].push_back(Car());
-    lanes[0].push_front(Car());
     lanes[1].push_front(Car());
-    lanes[1].push_back(Car());
 
     lanes[0].back().print();
     lanes[0].front().print();
 
-    lanes[1].back().print();
-    lanes[1].front().print();
+    lanes[0].back().print();
+    lanes[0].front().print();
 
-    cout << "Lane 1:\n";
-    display_cars(lanes[0]);
-    cout << "Lane 2:\n";
-    display_cars(lanes[1]);
+
 
 
 /*
